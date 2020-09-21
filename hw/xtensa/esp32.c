@@ -578,7 +578,7 @@ static void esp32_machine_init_spi_flash(MachineState *machine, Esp32SocState *s
     /* "main" flash chip is attached to SPI1 */
     DeviceState *spi_master = DEVICE(&s->spi[1]);
     SSIBus* spi_bus = (SSIBus *)qdev_get_child_bus(spi_master, "spi");
-    DeviceState *flash_dev = ssi_create_slave_no_init(spi_bus, "gd25q32");
+    DeviceState *flash_dev = ssi_create_slave_no_init(spi_bus, "gd25q128");
     qdev_prop_set_drive(flash_dev, "drive", blk, &error_fatal);
     qdev_init_nofail(flash_dev);
     qdev_connect_gpio_out_named(spi_master, SSI_GPIO_CS, 0,
